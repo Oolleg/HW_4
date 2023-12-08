@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=aws.connect.psdb.cloud;Database=maindb;user=y1tdy2bq1bqdg0vpg2ss;password=pscale_pw_WeiKdeZ2MoJnBXfsa1OdhyC8VIl7lUpZPRwvw4vknPF;SslMode=VerifyFull;"
+  }
+}

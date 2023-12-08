@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Registration";
+}
+
+@*@functions {
+    public string ValidStyleInput(bool? result)
+    {
+        if (result == null)
+        {
+            return "";
+        }
+
+        return (result.Value) ? "is-valid" : "is-invalid";
+
+    }
+}*@
+
+
+<form asp-action="SigupForm" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-5 mainBorder py-3">
+                <div class="row g-3 justify-content-center mb-3">
+                    <h3 class="col-md-10 text-center">Registration form</h3>
+                </div>
+                  
+                <div class="row g-3 justify-content-center mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"
+                              id="fullname-addon"><i class="bi bi-person-vcard"></i></span>
+                        <input type="text" class="form-control"
+                               name="signup-fullname"
+                               placeholder="Fullname" aria-label="Fullname" 
+                               aria-describedby="basic-addon">
+                    </div>
+                   @* <div class="col-md-10">
+                        <label for="validationName" class="form-label">Full name</label>
+                        <input name="user-name" type="text" class="form-control" id="validationName" value="" aria-describedby="validationDivName" required>
+                        <div id="validationDivName" class="invalid-feedback">
+                            Name must start with a capital letter and may only contain letters.
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row g-3 justify-content-center mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"
+                              id="email-addon"><i class="bi bi-envelope-at"></i></span>
+                        <input type="text" class="form-control"
+                               name="signup-email"
+                               placeholder="Email" aria-label="Email"
+                               aria-describedby="email-addon">
+                    </div>
+                   @* <div class="col-md-10">
+                        <label for="validationPhone" class="form-label">E-mail</label>
+                        <input name="user-email" type="email" class="form-control"  id="validationPhone" value="" aria-describedby="validationDivEmail" required>
+                        <div id="validationDivEmail" class="invalid-feedback">
+                            Email may contain uppercase and lowercase latin letters and must contain symbol @@.
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row g-3 justify-content-center mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text"
+                              id="phone-addon"><i class="bi bi-telephone"></i></span>
+                        <input type="text" class="form-control"
+                               name="signup-phone"
+                               placeholder="Phone" aria-label="Phone"
+                               aria-describedby="phone-addon">
+                    </div>
+                  @*  <div class="col-md-10">
+                        <label for="validationPhone" class="form-label">Phone number</label>
+                        <input name="user-phone" type="text" class="form-control" id="validationPhone" value="" aria-describedby="validationDivPhone" required>
+                        <div id="validationDivPhone" class="invalid-feedback">
+                            Phone must be 0222222222 or 022-222-22-22.
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row g-3 justify-content-center mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"
+                              id="login-addon"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control"
+                               name="signup-login"
+                               placeholder="Login" aria-label="Login"
+                               aria-describedby="login-addon">
+                    </div>
+                   @* <div class="col-md-10">
+                        <label for="validationLogin" class="form-label">Login</label>
+                        <input name="user-login" type="text" class="form-control" id="validationLogin" value="" aria-describedby="validationDivLogin" required>
+                        <div id="validationDivLogin" class="invalid-feedback">
+                            LastName must start with a capital letter and may only contain letters.
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row g-3 justify-content-center mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"
+                              id="password-addon"><i class="bi bi-lock-fill"></i></span>
+                        <input type="password" class="form-control"
+                               name="signup-password"
+                               placeholder="Password" aria-label="Password"
+                               aria-describedby="password-addon">
+                    </div>
+                   @* <div class="col-md-10">
+                        <label for="validationPassword" class="form-label">Password</label>
+                        <input name="user-Password" type="text" class="form-control" id="validationPassword" value="" aria-describedby="validationDivPassword" required>
+                        <div id="validationDivPassword" class="invalid-feedback">
+                            Password may contain at least 8 characters.
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row g-3 justify-content-center mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"
+                              id="repeat-addon"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control"
+                               name="signup-repeat"
+                               placeholder="Repeat" aria-label="Repeat"
+                               aria-describedby="repeat-addon">
+                    </div>
+                   @* <div class="col-md-10">
+                        <label for="validationRepeat" class="form-label">Repeat password</label>
+                        <input name="user-Repeat" type="text" class="form-control" id="validationRepeat" value="" aria-describedby="validationDivRepeat" required>
+                        <div id="validationDivRepeat" class="invalid-feedback">
+                            Password do not match.
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row g-3 justify-content-center mb-3">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" 
+                        for="avatar-input">
+                        <i class="bi bi-person-square"></i></label>
+                        <input type="file" class="form-control" id="avatar-input"
+                        name="signup-avatar"
+                        placeholder="Avatar" aria-label="Avatar">
+                    </div>
+                </div>
+                <div class="row g-3 justify-content-center">
+                    <div class="col-md-2">
+                        <button class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
