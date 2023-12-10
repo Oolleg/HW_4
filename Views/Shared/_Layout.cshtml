@@ -59,17 +59,38 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="authModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="authModalLabel">Sign In</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                    
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="row g-3 justify-content-center mt-3 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                          id="login-signin"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control"
+                                           name="login-signin"
+                                           placeholder="Login" aria-label="Login"
+                                           aria-describedby="login-signin">
+                                </div>
+                        </div>
+                        <div class="row g-3 justify-content-center mt-3 mb-4">
+                                <div class="input-group">
+                                    <span class="input-group-text"
+                                          id="password-signin"><i class="bi bi-lock-fill"></i></span>
+                                    <input type="password" class="form-control"
+                                           name="password-signin"
+                                           placeholder="Password" aria-label="Password"
+                                           aria-describedby="password-signin">
+                                </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer d-flex justify-content-between">
                       <a asp-controller="Home" asp-action="SignUp"
                        class="btn btn-link">Registration</a>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <a asp-controller="Home" asp-action="SignIn" class="btn btn-outline-primary">Sign In</a>
                 </div>
             </div>
         </div>

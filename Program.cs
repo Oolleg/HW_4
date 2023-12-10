@@ -1,5 +1,6 @@
 using HW_4.Data.Entities;
 using HW_4.Services.Hash;
+using HW_4.Services.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using MySqlConnector;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IHashService, Sha1HashService>();
+builder.Services.AddSingleton<IValidationService, UserValidation>();
 
 builder.Configuration.AddJsonFile("dbsettings.json");
 
@@ -37,16 +39,15 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 );
 
-var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+builder.Services.AddSession(options =>
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

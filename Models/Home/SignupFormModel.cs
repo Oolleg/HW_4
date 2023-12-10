@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace HW_4.Models.Home
 {
@@ -20,9 +21,10 @@ namespace HW_4.Models.Home
         public string Password { get; set; } = null!;
 
         [FromForm(Name = "signup-repeat")]
-        public string Repeart { get; set; } = null!;
+        public string Repeat { get; set; } = null!;
 
         [FromForm(Name = "signup-avatar")]
+        [JsonIgnore]
         public IFormFile Avatar { get; set; } = null!;
     }
 }
