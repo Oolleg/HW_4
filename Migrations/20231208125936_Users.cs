@@ -10,14 +10,14 @@ namespace HW_4.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "ASP_SPD_111-HW");
+                name: "ASP_SPD_111_HW");
 
             //migrationBuilder.AlterDatabase()
             //    .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Users",
-                schema: "ASP_SPD_111-HW",
+                schema: "ASP_SPD_111_HW",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),

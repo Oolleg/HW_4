@@ -14,7 +14,7 @@ namespace HW_4.Data.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("ASP_SPD_111-HW");
+            modelBuilder.HasDefaultSchema("ASP_SPD_111_HW");
         }
     }
 }

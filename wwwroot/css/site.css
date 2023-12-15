@@ -16,3 +16,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.nav-avatar {
+    max-height: 50px;
+    max-width: 50px;
+    border-radius: 50%;
+}
+.drop-color {
+    background-color: white !important;
+    border:hidden;
+}
+
+.drop::after {
+    border-top: 0.3em solid #808080;
+}

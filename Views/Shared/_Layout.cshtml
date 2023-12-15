@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,10 +32,33 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#authModal">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>SIGN IN</span>
-                </button>
+                @if(Context.User.Identity?.IsAuthenticated ?? false)
+                {
+                    String avatar = Context.User.Claims
+                    .First(claim => claim.Type == ClaimTypes.UserData)
+                    .Value;
+                    if (String.IsNullOrEmpty(avatar)) avatar = "no-photo.png";
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary drop dropdown-toggle drop-color"
+                                data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            <img src="/avatars/@(avatar)" class="nav-avatar" />
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li><button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#SignOutModal">SIGN OUT
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                     <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#authModal">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        <span>SIGN IN</span>
+                    </button>
+                }
+               
             </div>
         </nav>
 
@@ -52,8 +76,24 @@
             &copy; 2023 - HW_4 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
-   
+    <!--Modal SignOut-->
+    <div class="modal fade" id="SignOutModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to sign out?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="signout-button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-primary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -64,33 +104,36 @@
                    
                 </div>
                 <div class="modal-body">
-                    <form>
+                    
                         <div class="row g-3 justify-content-center mt-3 mb-3">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                          id="login-signin"><i class="bi bi-person"></i></span>
+                                    <span class="input-group-text">
+                                          <i class="bi bi-person"></i></span>
                                     <input type="text" class="form-control"
-                                           name="login-signin"
+                                           id="auth-login"
                                            placeholder="Login" aria-label="Login"
                                            aria-describedby="login-signin">
                                 </div>
                         </div>
                         <div class="row g-3 justify-content-center mt-3 mb-4">
                                 <div class="input-group">
-                                    <span class="input-group-text"
-                                          id="password-signin"><i class="bi bi-lock-fill"></i></span>
+                                    <span class="input-group-text">
+                                          <i class="bi bi-lock-fill"></i></span>
                                     <input type="password" class="form-control"
-                                           name="password-signin"
+                                           id="auth-password"
                                            placeholder="Password" aria-label="Password"
                                            aria-describedby="password-signin">
                                 </div>
                         </div>
-                    </form>
+                    <div id="auth-message" class="visually-hidden alert alert-primary" role="alert">
+                       
+                    </div>
+                    
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                       <a asp-controller="Home" asp-action="SignUp"
                        class="btn btn-link">Registration</a>
-                    <a asp-controller="Home" asp-action="SignIn" class="btn btn-outline-primary">Sign In</a>
+                    <button type="button" id="auth-button" class="btn btn-outline-primary">Sign In</button>
                 </div>
             </div>
         </div>

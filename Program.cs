@@ -1,4 +1,5 @@
 using HW_4.Data.Entities;
+using HW_4.Middleware;
 using HW_4.Services.Hash;
 using HW_4.Services.Validation;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +31,7 @@ builder.Services.AddDbContext<DataContext>(options =>
             serverOptions
             .MigrationsHistoryTable(
                 tableName: HistoryRepository.DefaultTableName,
-                schema: "ASP_SPD_111-HW")
+                schema: "ASP_SPD_111_HW")
             .SchemaBehavior(
                 MySqlSchemaBehavior.Translate,
                 (schema, table) => $"{schema}_{table}")
@@ -42,7 +43,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(1);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -65,6 +66,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.UseSession();
+
+app.UseMiddleware<AuthSessionMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

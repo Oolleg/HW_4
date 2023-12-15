@@ -105,6 +105,7 @@ namespace HW_4.Controllers
 
             int dotPosition = 0;
             String ext = null!;
+            String fileName = null!;
             if (model.Avatar != null && model.Avatar.Length > 0)
             {
                 dotPosition = model.Avatar.FileName.LastIndexOf(".");
@@ -119,13 +120,13 @@ namespace HW_4.Controllers
                     results.AvatarErrorMessage = "Unable to upload a file without extension. jpg, png extansions are acceptable";
                     isFormValid = false;
                 }
-
+                
                 if (isFormValid)
                 {
 
                     String dir = Directory.GetCurrentDirectory();
                     String savedName;
-                    String fileName;
+                    
                     do
                     {
                         fileName = Guid.NewGuid() + ext;
@@ -156,7 +157,8 @@ namespace HW_4.Controllers
                     Login = model.Login,
                     PasswordSalt = salt,
                     PasswordDk = dk,
-                    RegisterDt = DateTime.Now
+                    RegisterDt = DateTime.Now,
+                    Avatar = fileName
                 });
 
                 _dataContext.SaveChanges();

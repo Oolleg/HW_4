@@ -18,7 +18,7 @@ namespace HW_4.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("ASP_SPD_111-HW")
+                .HasDefaultSchema("ASP_SPD_111_HW")
                 .HasAnnotation("ProductVersion", "6.0.25")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
@@ -62,7 +62,7 @@ namespace HW_4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", "ASP_SPD_111-HW");
+                    b.ToTable("Users", "ASP_SPD_111_HW");
                 });
 #pragma warning restore 612, 618
         }
