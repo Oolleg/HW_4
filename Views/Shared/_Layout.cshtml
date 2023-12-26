@@ -38,16 +38,25 @@
                     .First(claim => claim.Type == ClaimTypes.UserData)
                     .Value;
                     if (String.IsNullOrEmpty(avatar)) avatar = "no-photo.png";
+                    
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary drop dropdown-toggle drop-color"
                                 data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <img src="/avatars/@(avatar)" class="nav-avatar" />
                         </button>
                         <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li>
+                                <a class="dropdown-item" 
+                                        asp-controller="User"
+                                        asp-action="Profile">
+                                        PROFILE
+                                </a>
+                            </li>
                             <li><button class="dropdown-item" type="button" data-bs-toggle="modal"
                                         data-bs-target="#SignOutModal">SIGN OUT
                                 </button>
                             </li>
+                           
                         </ul>
                     </div>
                 }

@@ -22,7 +22,7 @@ namespace HW_4.Controllers
         public object Authenticate(String login, String password)
         {
             var user = _dataContext
-                .Users.FirstOrDefault(u => u.Login == login);
+                .Users.Where(u => u.DeleteDt == null).FirstOrDefault(u => u.Login == login);
             if (user == null)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
